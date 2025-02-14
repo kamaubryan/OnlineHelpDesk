@@ -55,7 +55,7 @@ const fadeIn = {
 
 // Loading Screen Component
 const LoadingScreen = () => (
-  <div className="fixed inset-0 w-screen h-screen bg-slate-900 flex items-center justify-center z-50">
+  <div className="fixed inset-0 w-screen h-screen bg-gray-100 flex items-center justify-center z-50">
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -119,7 +119,6 @@ const Navigation = () => {
 
   const menuItems = [
     { path: "/", label: "Home" },
-    // { path: "/about", label: "About" },
     { path: "/pricing", label: "Pricing" },
     { path: "/contact", label: "Contact" },
   ];
@@ -130,73 +129,74 @@ const Navigation = () => {
         isScrolled ? "shadow-md" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 h-16">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo and Navigation Container */}
-          <div className="flex items-center space-x-12 w-full">
-            {/* Logo */}
-            <Link to="/" className="text-2xl font-bold text-gray-900">
-              HelpDesk
-            </Link>
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="text-2xl font-bold text-gray-900">
+          HelpDesk
+        </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center justify-between flex-1">
-              <div className="flex items-center space-x-8">
-                {menuItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`text-base hover:text-blue-600 transition-colors ${
-                      location.pathname === item.path
-                        ? "text-blue-600 font-medium"
-                        : "text-gray-600"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
-                Get Started
-              </Button>
-            </nav>
+        {/* Desktop Navigation - Center Aligned */}
+        <nav className="hidden md:flex flex-1 justify-center items-center">
+          <div className="flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-base hover:text-blue-600 transition-colors ${
+                  location.pathname === item.path
+                    ? "text-blue-600 font-medium"
+                    : "text-gray-600"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
+        </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <Menu className="h-6 w-6 text-gray-700" />
-          </button>
+        {/* Get Started Button (Centering Fix) */}
+        <div className="hidden md:flex">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+            Get Started
+          </Button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg">
-            <div className="px-4 py-3 space-y-3">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`block text-base hover:text-blue-600 transition-colors ${
-                    location.pathname === item.path
-                      ? "text-blue-600 font-medium"
-                      : "text-gray-600"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <Menu className="h-6 w-6 text-black" />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg">
+          <div className="px-4 py-3 space-y-3">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`block text-base hover:text-blue-600 transition-colors ${
+                  location.pathname === item.path
+                    ? "text-blue-600 font-medium"
+                    : "text-gray-600"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link to="/">
+              {" "}
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">
                 Get Started
               </Button>
-            </div>
+            </Link>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };
@@ -243,7 +243,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <img
-                src="/images/helpdesk.png"
+                src="/public/725_generated.jpg"
                 alt="Help Desk"
                 className="rounded-lg shadow-xl w-full max-w-md"
               />
@@ -698,7 +698,7 @@ const Footer = () => {
                 HelpDesk
               </Link>
               <Paragraph className="text-gray-500 mt-2">
-                © 2024 HelpDesk. All rights reserved.
+                © 2025 HelpDesk. All rights reserved.
               </Paragraph>
             </Col>
             <Col>
