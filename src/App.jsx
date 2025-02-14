@@ -135,7 +135,7 @@ const Navigation = () => {
           HelpDesk
         </Link>
 
-        {/* Desktop Navigation - Center Aligned */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-1 justify-center items-center">
           <div className="flex items-center space-x-8">
             {menuItems.map((item) => (
@@ -154,53 +154,60 @@ const Navigation = () => {
           </div>
         </nav>
 
-        {/* Get Started Button (Centering Fix) */}
+        {/* Get Started Button */}
         <div className="hidden md:flex">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+          <Button type="primary" className="px-6">
             Get Started
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 z-50 relative"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <Menu className="h-6 w-6 text-black" />
+          <MenuOutlined className="text-black text-2xl" /> {/* ✅ AntD Icon */}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg">
-          <div className="px-4 py-3 space-y-3">
-            {menuItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`block text-base hover:text-blue-600 transition-colors ${
-                  location.pathname === item.path
-                    ? "text-blue-600 font-medium"
-                    : "text-gray-600"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link to="/">
-              {" "}
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">
-                Get Started
-              </Button>
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      ></div>
+
+      <div
+        className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300`}
+      >
+        <div className="p-5 flex flex-col space-y-3">
+          {menuItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`block text-base hover:text-blue-600 transition-colors ${
+                location.pathname === item.path
+                  ? "text-blue-600 font-medium"
+                  : "text-gray-600"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
             </Link>
-          </div>
+          ))}
+          <Link to="/">
+            <Button type="primary" className="w-full mt-4">
+              Get Started
+            </Button>
+          </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 };
-
 // Hero Section
 const HeroSection = () => {
   return (
